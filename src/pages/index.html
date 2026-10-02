@@ -1,0 +1,124 @@
+<main>
+  <section class="wrap hx hx-home">
+    <div class="hm-kicker"><span>Выпуск о зарубежных подписках</span><span>{{SVC_TOTAL}} сервисов в номере · оплата через СБП</span></div>
+    <h1 class="hm-title">Платите за <em>ChatGPT, Netflix и&nbsp;Steam</em> рублями</h1>
+    <div class="hm-cols">
+      <div class="hm-lead">
+        <p class="dropcap">Выпустим долларовую виртуальную карту за 15 минут и подскажем, как привязать её к сервису. Вы платите по QR через СБП, а дальше пользуетесь картой как обычной — продлеваете подписки, пополняете кошельки, покупаете в зарубежных магазинах.</p>
+        <form class="hm-search" action="{{BASE}}catalog.html" role="search" id="heroSearch">
+          <label for="heroQ">Что оплатим?</label>
+          <div><input type="search" name="q" id="heroQ" placeholder="Например, Figma" autocomplete="off"><button type="submit" class="btn btn-primary btn-sm">Найти</button></div>
+        </form>
+        <ul class="hm-facts">
+          <li><b>15 мин</b>до готовой карты</li>
+          <li><b>0 ₽</b>за пополнение</li>
+          <li><b>+500 ₽</b>за верификацию</li>
+        </ul>
+      </div>
+      <figure class="hm-figure">
+      <div class="card-stage" id="cardStage" role="img" aria-label="Виртуальная карта Polka">
+            <div class="card-float">
+              <div class="card-tilt" id="cardTilt">
+                <div class="card-spin">
+                  <div class="face face-front">
+                    <span class="orbit"></span><span class="orbit o2"></span>
+                    <span class="f-brand">polka</span>
+                    <span class="f-type">USD</span>
+                    <span class="f-chip"></span>
+                    <svg class="f-wave" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round"><path d="M6 8.5a6 6 0 0 1 0 7M9.5 6a10 10 0 0 1 0 12M13 3.5a14 14 0 0 1 0 17"/></svg>
+                    <span class="f-num">4021 •••• •••• 7788</span>
+                    <span class="f-meta"><span>ДО <b>09/29</b></span><span>VIRTUAL</span></span>
+                    <img class="f-logo" src="{{LOGO}}" alt="">
+                  </div>
+                  <div class="face face-back">
+                    <span class="f-stripe"></span>
+                    <span class="f-sign"></span>
+                    <span class="f-cvc">•••</span>
+                    <span class="f-cvc-label">CVC</span>
+                    <span class="f-back-note">Реквизиты — в кабинете и на почте сразу после выпуска.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card-shadow" aria-hidden="true"></div>
+        </div>
+        <figcaption>Рис. 1. Виртуальная карта Polka — доллары, выпуск до 15 минут</figcaption>
+      </figure>
+      <aside class="hm-contents" aria-labelledby="hmCt">
+        <h2 id="hmCt">В этом номере</h2>
+        <ol id="homePopular"></ol>
+        <a class="arrow-link" href="{{BASE}}catalog.html">Весь каталог — {{SVC_TOTAL}} сервисов</a>
+      </aside>
+    </div>
+  </section>
+
+  <div class="wrap stack">
+    <!-- как это работает: три колонки с крупными цифрами -->
+    <section class="reveal hm-steps" id="how">
+      <div class="section-row">
+        <div class="section-head"><span class="eyebrow">Как это работает</span><h2>Три шага — и подписка оплачена</h2></div>
+        <a class="btn btn-ghost btn-sm" href="{{BASE}}how-it-works.html">Подробнее о процессе</a>
+      </div>
+      <ol class="hm-step-list">
+        <li><b>Выберите номинал или сервис</b><span>Карта на $50–200 или конкретный тариф — итог в рублях видно сразу.</span></li>
+        <li><b>Оплатите по QR через СБП</b><span>Из приложения любого банка. Курс ЦБ и комиссия — в расчёте до оплаты.</span></li>
+        <li><b>Привяжите карту к сервису</b><span>Номер, срок и CVC появятся в кабинете. Инструкция — для каждого сервиса.</span></li>
+      </ol>
+    </section>
+
+    <!-- разделы каталога: указатель -->
+    <section class="reveal home-dirs" id="cats">
+      <div class="section-row">
+        <div class="section-head"><span class="eyebrow">Указатель</span><h2>Разделы каталога</h2><p>Внутри — цены в рублях и пошаговая привязка для каждого сервиса.</p></div>
+        <a class="btn btn-ghost btn-sm" href="{{BASE}}catalog.html">Весь каталог</a>
+      </div>
+      <div class="dirs" id="homeCats"></div>
+    </section>
+
+    <!-- колонка редактора -->
+    <section class="reveal hm-column">
+      <blockquote class="hm-quote">
+        <p>Мы не продаём подписки. Мы выдаём карту, которой вы&nbsp;платите сами — честно, по курсу ЦБ и с итогом до оплаты.</p>
+        <footer>— Редакция Polka</footer>
+      </blockquote>
+      <div class="hm-notes">
+        <article><span class="hm-n">500 ₽</span><h3>Бонус за верификацию</h3><p>Подтвердите личность — снимем лимит в 15 000 ₽ и подарим скидку на следующую покупку.</p></article>
+        <article><span class="hm-n">₽</span><h3>Итог — до оплаты</h3><p>Курс ЦБ, комиссия и сумма в рублях видны в расчёте. Никаких списаний потом.</p></article>
+        <article><span class="hm-n">1</span><h3>Одна карта — много сервисов</h3><p>Пополняйте ту же карту, номер не меняется. Баланс и история — в кабинете.</p></article>
+        <article><span class="hm-n">★</span><h3>Отзывы покупателей</h3><p>Честные оценки после каждой покупки — на страницах сервисов и карты.</p><a href="{{BASE}}virtual-card.html#reviews" class="arrow-link">Читать отзывы</a></article>
+      </div>
+    </section>
+
+    <!-- вопросы -->
+    <section class="panel reveal home-faq-wrap" id="faq">
+      <div class="faq-aside">
+        <span class="eyebrow">Вопросы</span>
+        <h2>Коротко о главном</h2>
+        <p>Не нашли ответ? Напишите — отвечаем с 9:00 до 22:00 по Москве.</p>
+        <a class="btn btn-ghost btn-sm" href="{{BASE}}faq.html">Все вопросы</a>
+      </div>
+      <div class="acc-list home-faq">
+        <details class="acc" open><summary>Как проходит оплата?<span class="acc-ico" aria-hidden="true"></span></summary><div class="acc-body">Выбираете карту или сервис, указываете почту и платите по QR-коду через СБП. Карта будет готова в течение 15 минут, реквизиты — в кабинете и на почте.</div></details>
+        <details class="acc"><summary>Я оплачиваю сам сервис?<span class="acc-ico" aria-hidden="true"></span></summary><div class="acc-body">Нет — вы покупаете долларовую виртуальную карту. Подписку оплачиваете ею сами, на сайте сервиса.</div></details>
+        <details class="acc"><summary>Есть ли лимиты?<span class="acc-ico" aria-hidden="true"></span></summary><div class="acc-body">Без верификации — до 15 000 ₽ в месяц, отсчёт с первой покупки. После проверки паспорта лимит снимается.</div></details>
+        <details class="acc"><summary>А если сервиса нет в каталоге?<span class="acc-ico" aria-hidden="true"></span></summary><div class="acc-body">Карта работает в любом сервисе с оплатой в долларах, если он не запрещён офертой. Напишите — подскажем.</div></details>
+        <details class="acc"><summary>Письмо с реквизитами не пришло<span class="acc-ico" aria-hidden="true"></span></summary><div class="acc-body">Загляните в «Спам» и в кабинет — реквизиты всегда там. Если и там нет, напишите в поддержку, найдём заказ по почте.</div></details>
+      </div>
+    </section>
+
+    <!-- поддержка и финальный призыв -->
+    <section class="home-final reveal" id="support">
+      <div class="final-copy">
+        <h2>Карта будет готова раньше, чем вы допьёте кофе</h2>
+        <p>Выпуск — до 15 минут. Пополнение — без комиссии с нашей стороны.</p>
+        <div class="hero-cta"><a class="btn btn-primary" href="{{BASE}}virtual-card.html">Выпустить карту</a><a class="btn btn-ghost" href="{{BASE}}catalog.html">Выбрать сервис</a></div>
+      </div>
+      <div class="final-help">
+        <span class="fh-t">Нужна помощь?</span>
+        <a href="https://t.me/polka_support" data-contact="tg" target="_blank" rel="noopener"><b>Telegram</b><span data-contact-text="tg">@polka_support</span></a>
+        <a href="https://max.ru/polka_support" data-contact="max" target="_blank" rel="noopener"><b>Max</b><span data-contact-text="max">polka_support</span></a>
+        <a href="mailto:support@polka.ru" data-contact="mail"><b>Почта</b><span data-contact-text="mail">support@polka.ru</span></a>
+      </div>
+    </section>
+  </div>
+</main>

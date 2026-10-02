@@ -1,0 +1,32 @@
+<div class="page">
+<div class="issue-line">
+  <div class="wrap il-row">
+    <span class="il-date" id="ilDate">Оплата зарубежных подписок через СБП</span>
+    <span class="il-mid">Ежедневно с 9:00 до 22:00 по Москве</span>
+    <span class="il-r"><a href="{{BASE}}tariffs.html">Тарифы</a><a href="{{BASE}}contacts.html">Контакты</a><a class="head-login" href="{{BASE}}login.html">Войти</a></span>
+  </div>
+</div>
+<script>(function(){var e=document.getElementById('ilDate');if(e)try{var t=new Date().toLocaleDateString('ru-RU',{weekday:'long',day:'numeric',month:'long',year:'numeric'});e.textContent=t.charAt(0).toUpperCase()+t.slice(1);}catch(_){}})();</script>
+<header class="site-head">
+  <div class="wrap head-row">
+    <span class="head-motto">Журнал о подписках,<br>которые можно оплатить</span>
+    <a class="brand" href="{{BASE}}index.html" aria-label="Polka — на главную">
+      <img class="brand-mark" src="{{LOGO}}" alt="">
+      <span class="brand-word">Polka</span>
+    </a>
+    <div class="head-actions">
+      <a class="btn btn-lime head-cta" href="{{BASE}}virtual-card.html">Получить карту</a>
+      <button type="button" class="burger" id="tabMore" aria-haspopup="dialog" aria-expanded="false" aria-controls="moreSheet" aria-label="Меню"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+<nav class="site-nav" aria-label="Основная навигация">
+  <div class="wrap nav-row">
+    <a href="{{BASE}}catalog.html" {{CUR_CATALOG}}>Сервисы</a>
+    <a href="{{BASE}}virtual-card.html" {{CUR_VC}}>Карта</a>
+    <a href="{{BASE}}how-it-works.html" {{CUR_HOW}}>Как это устроено</a>
+    <a href="{{BASE}}faq.html" {{CUR_FAQ}}>Вопросы</a>
+    <a href="{{BASE}}support.html" {{CUR_SUPPORT}}>Помощь</a>
+    <a class="nav-login head-login" href="{{BASE}}login.html">Кабинет</a>
+  </div>
+</nav>

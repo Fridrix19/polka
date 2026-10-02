@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 400">
+  <rect x="40" y="318" width="400" height="10" fill="#1A1712"/>
+  <rect x="60" y="328" width="12" height="40" fill="#1A1712"/><rect x="408" y="328" width="12" height="40" fill="#1A1712"/>
+  <g stroke="#1A1712" stroke-width="3">
+    <rect x="70" y="120" width="44" height="198" fill="#D8431C"/>
+    <rect x="114" y="160" width="36" height="158" fill="#F2EDE3"/>
+    <rect x="150" y="96" width="50" height="222" fill="#1A1712"/>
+    <rect x="200" y="176" width="32" height="142" fill="#E3B23C"/>
+    <rect x="232" y="140" width="40" height="178" fill="#F2EDE3"/>
+  </g>
+  <g fill="none" stroke="#F2EDE3" stroke-width="3"><path d="M160 130h30M160 140h30"/></g>
+  <g fill="none" stroke="#1A1712" stroke-width="3"><path d="M80 150h24M80 290h24M124 190h16M242 170h20M242 290h20"/></g>
+  <g transform="rotate(-14 330 250)">
+    <rect x="286" y="150" width="128" height="176" fill="#1A1712"/>
+    <rect x="286" y="150" width="128" height="34" fill="#D8431C"/>
+    <rect x="302" y="204" width="28" height="22" fill="#E3B23C"/>
+    <text x="302" y="300" font-family="Georgia,serif" font-style="italic" font-size="30" fill="#F2EDE3">Polka</text>
+  </g>
+  <circle cx="400" cy="92" r="34" fill="none" stroke="#1A1712" stroke-width="3"/>
+  <text x="400" y="104" text-anchor="middle" font-family="Georgia,serif" font-size="34" fill="#1A1712">$</text>
+</svg>

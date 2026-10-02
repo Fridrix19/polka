@@ -1,0 +1,119 @@
+/* ——— главная Polka: обложка журнала ——— */
+.section-row{display:flex; justify-content:space-between; align-items:flex-end; gap:16px 24px; flex-wrap:wrap; margin-block-end:26px}
+.section-row .section-head{margin:0}
+
+/* обложка: строка выпуска, огромный заголовок, три колонки под линейкой */
+.hx-home{padding-block:clamp(22px,3vw,40px) 0}
+.hm-kicker{display:flex; justify-content:space-between; gap:10px 20px; flex-wrap:wrap; font-size:11.5px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--text-3); padding-block-end:14px}
+.hm-kicker span:first-child{color:var(--accent)}
+.hm-title{font-size:clamp(44px,8.6vw,128px); line-height:.94; font-weight:900; letter-spacing:-0.03em; max-width:15ch; padding-block-end:clamp(20px,3vw,34px)}
+.hm-title em{font-style:italic; font-weight:700; color:var(--accent-solid)}
+.hm-cols{display:grid; grid-template-columns:minmax(0,1.05fr) minmax(0,1fr) minmax(0,1fr); border-block:3px solid var(--rule)}
+.hm-cols > *{padding:26px 28px 28px; min-width:0}
+.hm-cols > :first-child{padding-inline-start:0}
+.hm-cols > :last-child{padding-inline-end:0}
+.hm-cols > * + *{border-inline-start:1px solid var(--line-strong)}
+.hm-lead{display:flex; flex-direction:column; gap:22px}
+.dropcap{font-size:17px; line-height:1.65; color:var(--text-2); text-wrap:pretty}
+.dropcap::first-letter{float:left; font-family:var(--font-display); font-weight:900; font-size:76px; line-height:.82; margin:6px 10px 0 0; color:var(--accent-solid)}
+.hm-search{display:grid; gap:8px}
+.hm-search label{font-size:11.5px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--text-3)}
+.hm-search > div{display:flex; align-items:center; gap:10px; border-block-end:2px solid var(--text)}
+.hm-search input{flex:1; min-width:0; border:0; background:none; outline:none; font-family:var(--font-display); font-style:italic; font-size:22px; color:var(--text); min-height:50px}
+.hm-search input::placeholder{color:var(--text-4)}
+.hm-search > div:focus-within{border-block-end-color:var(--accent-solid)}
+.hm-facts{list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:0}
+.hm-facts li{display:flex; flex-direction:column; font-size:12px; color:var(--text-3); padding-inline-end:10px}
+.hm-facts li + li{border-inline-start:1px solid var(--line-strong); padding-inline-start:12px}
+.hm-facts b{font-family:var(--font-display); font-size:22px; font-weight:800; color:var(--text); line-height:1.2}
+.hm-figure{margin:0; display:flex; flex-direction:column; justify-content:center; background:repeating-linear-gradient(-45deg,transparent 0 9px,var(--tint-3) 9px 10px)}
+.hm-figure .card-stage{width:min(100%,380px)}
+.hm-figure figcaption{font-family:var(--font-display); font-style:italic; font-size:13.5px; color:var(--text-3); text-align:center; text-wrap:balance}
+.hero-sticker{position:absolute; right:-2%; top:2%; z-index:2; width:96px; aspect-ratio:1; border-radius:50%; background:var(--ochre); color:#1A1712; display:grid; place-items:center; align-content:center; text-align:center; rotate:12deg; border:2px solid #1A1712}
+.hero-sticker b{font-family:var(--font-display); font-size:22px; font-weight:900; line-height:1}
+.hero-sticker span{font-size:9.5px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; line-height:1.2; padding-inline:10px}
+.hm-contents{display:flex; flex-direction:column; gap:14px}
+.hm-contents h2{font-size:28px; font-style:italic}
+.hm-contents ol{list-style:none; margin:0; padding:0; counter-reset:ct; display:flex; flex-direction:column}
+.pop-card a{display:grid; grid-template-columns:32px auto minmax(12px,1fr) auto; align-items:baseline; gap:10px; padding:9px 0; text-decoration:none; color:var(--text); border-block-end:1px solid var(--line)}
+.pop-card img{width:28px; height:28px; object-fit:contain; background:#fff; padding:4px; border:1px solid var(--line-strong); align-self:center}
+.pop-card img.on-dark{background:#1A1712; border-color:#1A1712}
+.ct-t{display:flex; flex-direction:column; min-width:0}
+.ct-t b{font-family:var(--font-display); font-size:17px; font-weight:700; line-height:1.2}
+.ct-t em{font-size:12px; color:var(--text-4); font-style:normal; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:18ch}
+.ct-dots{border-block-end:2px dotted var(--line-strong); align-self:end; margin-block-end:8px}
+.ct-p{font-family:var(--font-mono); font-size:12.5px; color:var(--text-3); white-space:nowrap}
+.ct-p b{font-family:var(--font-display); font-size:17px; color:var(--text)}
+.pop-card a:hover b{color:var(--accent)} .pop-card a:hover .ct-dots{border-color:var(--accent-solid)}
+
+/* три шага — колонки с крупными цифрами */
+.hm-step-list{list-style:none; margin:0; padding:0; counter-reset:st; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); border-block-start:3px solid var(--rule)}
+.hm-step-list li{counter-increment:st; display:flex; flex-direction:column; gap:8px; padding:22px 28px 6px 0}
+.hm-step-list li + li{padding-inline-start:28px; border-inline-start:1px solid var(--line-strong)}
+.hm-step-list li::before{content:counter(st); font-family:var(--font-display); font-weight:900; font-size:96px; line-height:.85; color:var(--accent-solid)}
+.hm-step-list b{font-family:var(--font-display); font-size:24px; color:var(--text); line-height:1.15}
+.hm-step-list span{font-size:15.5px; color:var(--text-3)}
+
+/* колонка редактора */
+.hm-column{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.3fr); gap:0; border-block:3px solid var(--rule)}
+.hm-quote{margin:0; padding:30px 34px 30px 0; display:flex; flex-direction:column; justify-content:space-between; gap:20px; border-inline-end:1px solid var(--line-strong)}
+.hm-quote p{font-family:var(--font-display); font-style:italic; font-weight:500; font-size:clamp(26px,2.8vw,38px); line-height:1.18; color:var(--text); text-wrap:balance}
+.hm-quote p::before{content:"«"; color:var(--accent-solid)} .hm-quote p::after{content:"»"; color:var(--accent-solid)}
+.hm-quote footer{font-size:12px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--text-3)}
+.hm-notes{display:grid; grid-template-columns:1fr 1fr}
+.hm-notes article{display:flex; flex-direction:column; gap:6px; padding:24px 0 24px 28px}
+.hm-notes article:nth-child(n+3){border-block-start:1px solid var(--line-strong)}
+.hm-notes article:nth-child(2n){border-inline-start:1px solid var(--line-strong)}
+.hm-n{font-family:var(--font-display); font-weight:900; font-size:34px; color:var(--accent-solid); line-height:1}
+.hm-notes h3{font-size:20px}
+.hm-notes p{font-size:14.5px; color:var(--text-3)}
+.hm-notes .arrow-link{margin-block-start:6px}
+
+/* вопросы: две колонки */
+.home-faq-wrap{display:grid; grid-template-columns:minmax(0,.7fr) minmax(0,1.3fr); gap:24px 56px; align-items:start}
+.faq-aside{display:flex; flex-direction:column; gap:14px; position:sticky; top:70px}
+.faq-aside h2{font-size:clamp(30px,3.4vw,46px); font-style:italic}
+.faq-aside p{color:var(--text-3)}
+.faq-aside .btn{align-self:flex-start}
+.home-faq{max-width:none}
+.home-faq .acc-body{max-width:none}
+
+/* финал: вермильоновый разворот и колонка контактов */
+.home-final{display:grid; grid-template-columns:minmax(0,1.4fr) minmax(0,.6fr); gap:0; border:3px solid var(--rule)}
+.final-copy{background:var(--accent-solid); color:#FFF7EC; padding:clamp(28px,5vw,60px); display:flex; flex-direction:column; gap:16px}
+.final-copy h2{color:#FFF7EC; font-size:clamp(30px,4vw,54px); font-style:italic; line-height:1.02}
+.final-copy p{font-size:17px}
+.final-copy .btn-primary{background:#1A1712; border-color:#1A1712; color:#F2EDE3} .final-copy .btn-primary:hover{background:#F2EDE3; border-color:#F2EDE3; color:#1A1712}
+.final-copy .btn-ghost{border-color:#FFF7EC; color:#FFF7EC} .final-copy .btn-ghost:hover{background:#FFF7EC; color:#1A1712}
+.final-help{padding:24px 26px; display:flex; flex-direction:column; gap:0; background:var(--panel)}
+.fh-t{font-family:var(--font-display); font-style:italic; font-weight:700; color:var(--text); font-size:24px; padding-block-end:10px; border-block-end:2px solid var(--rule)}
+.final-help a{display:flex; flex-direction:column; gap:0; padding:14px 0; border-block-end:1px solid var(--line); text-decoration:none; color:var(--text-2)}
+.final-help a b{font-size:11.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--text-3)}
+.final-help a span{font-family:var(--font-display); font-size:20px; color:var(--text)}
+.final-help a:hover span{color:var(--accent)}
+
+@media (max-width:1100px){
+  .hm-cols{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .hm-contents{grid-column:1/-1; border-inline-start:0!important; border-block-start:1px solid var(--line-strong); padding-inline:0!important}
+  .hm-contents ol{display:grid; grid-template-columns:1fr 1fr; column-gap:28px}
+}
+@media (max-width:980px){
+  .home-faq-wrap{grid-template-columns:minmax(0,1fr)} .faq-aside{position:static}
+  .home-final{grid-template-columns:minmax(0,1fr)}
+  .hm-column{grid-template-columns:minmax(0,1fr)} .hm-quote{border-inline-end:0; border-block-end:1px solid var(--line-strong); padding-inline-end:0}
+  .hm-notes article:nth-child(odd){padding-inline-start:0}
+  .hm-step-list{grid-template-columns:minmax(0,1fr)} .hm-step-list li + li{padding-inline-start:0; border-inline-start:0; border-block-start:1px solid var(--line-strong)}
+  .hm-step-list li{display:grid; grid-template-columns:70px 1fr; column-gap:16px; padding:18px 0} .hm-step-list li::before{grid-row:span 2; font-size:64px}
+}
+@media (max-width:760px){
+  .hm-title{font-size:clamp(40px,12vw,64px)}
+  .hm-cols{grid-template-columns:minmax(0,1fr)}
+  .hm-cols > *{padding:22px 0!important; border-inline-start:0!important}
+  .hm-cols > * + *{border-block-start:1px solid var(--line-strong)}
+  .hm-contents ol{grid-template-columns:minmax(0,1fr)}
+  .dropcap::first-letter{font-size:62px}
+  .hero-sticker{width:80px; right:0} .hero-sticker b{font-size:18px}
+  .hm-notes{grid-template-columns:minmax(0,1fr)} .hm-notes article{padding:18px 0!important; border-inline-start:0!important} .hm-notes article + article{border-block-start:1px solid var(--line-strong)}
+  .home-final{border-width:2px}
+}
+@media (max-width:420px){.hm-search .btn{padding:0 12px} .hm-search input{font-size:19px}}
