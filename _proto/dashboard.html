@@ -718,6 +718,28 @@ body.sheet-open{overflow:hidden}
   .hsv-copy h1{font-size:clamp(32px,9vw,44px)}
 }
 
+/* ——— хлебные крошки: рубрикатор журнала под навигацией ——— */
+.crumbbar{border-block-end:1px solid var(--line)}
+.cb-row{display:flex; align-items:center; gap:0; min-height:44px; min-width:0}
+.cb-back{flex:none; display:inline-flex; align-items:center; gap:8px; align-self:stretch; padding-inline-end:18px; margin-inline-end:18px; border-inline-end:1px solid var(--line); font-family:var(--font-display); font-style:italic; font-size:16px; color:var(--accent); text-decoration:none}
+.cb-back span{font-family:var(--font-body); font-style:normal; transition:transform .25s var(--ease)}
+.cb-back:hover{color:var(--accent-hover)} .cb-back:hover span{transform:translateX(-4px)}
+.cb-back:focus-visible{outline:2px solid var(--focus); outline-offset:2px}
+.cb-list{list-style:none; margin:0; padding:0; display:flex; align-items:center; flex-wrap:wrap; gap:2px 0; min-width:0; font-size:11.5px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--text-4)}
+.cb-list li{display:inline-flex; align-items:center; min-width:0}
+.cb-list li + li::before{content:"/"; margin-inline:10px; color:var(--line-strong); font-weight:400}
+.cb-list a{color:var(--text-3); text-decoration:none; background:linear-gradient(currentColor,currentColor) 0 100%/0 1px no-repeat; transition:background-size .25s var(--ease)}
+.cb-list a:hover{color:var(--accent); background-size:100% 1px}
+.cb-list [aria-current]{color:var(--text); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:40ch}
+@media (max-width:640px){
+  .cb-row{min-height:40px}
+  .cb-back{font-size:15px; padding-inline-end:12px; margin-inline-end:12px}
+  .cb-list{font-size:10.5px; letter-spacing:.1em; flex-wrap:nowrap; overflow:hidden}
+  .cb-list li:not(:last-child):not(:nth-last-child(2)){display:none}
+  .cb-list li:nth-last-child(2)::before{display:none}
+  .cb-list [aria-current]{max-width:20ch}
+}
+
 /* ——— библиотека компонентов: то, что нужно остальным страницам сайта (формы, навигация, карточки, оверлеи) ——— */
 
 /* --- формы: select, textarea, checkbox, radio, switch, поле с кнопкой --- */
@@ -1736,6 +1758,7 @@ input[type="number"]::-webkit-inner-spin-button,input[type="number"]::-webkit-ou
     <a class="nav-login head-login" href="login.html">Кабинет</a>
   </div>
 </nav>
+<nav class="crumbbar" aria-label="Вы здесь"><div class="wrap cb-row"><a class="cb-back" href="index.html" data-back><span aria-hidden="true">←</span> Назад</a><ol class="cb-list"><li><a href="index.html">Главная</a></li><li><span aria-current="page">Личный кабинет</span></li></ol></div></nav>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="i-home" viewBox="0 0 24 24"><path d="M4 11 12 4l8 7v9h-5v-6H9v6H4z"/></symbol>
@@ -2709,8 +2732,19 @@ window.MC = (function(){
     });
   }
 
+
+  /* — «Назад» в хлебных крошках: если пришли с этого же сайта — шаг назад по истории, иначе — на уровень выше по ссылке — */
+  function initBack(){
+    document.addEventListener('click', function(e){
+      var a = e.target.closest && e.target.closest('[data-back]'); if (!a || e.metaKey || e.ctrlKey || e.shiftKey) return;
+      var same = false; try { same = !!document.referrer && new URL(document.referrer).origin === location.origin; } catch (_) {}
+      if ((same || a.hasAttribute('data-back-hist')) && history.length > 1) { e.preventDefault(); history.back(); }
+    });
+  }
+
   initPaybar();
   initTheme();
+  initBack();
   initSession();
   syncCatalog();
   initSite();
@@ -2870,11 +2904,23 @@ window.MC = (function(){
     var render = R[id]; if (render) render(param, opts);
     cur = id;
     var hash = '#' + id + (param ? ':' + param : '');
-    if (location.hash !== hash) history.replaceState(null, '', hash);
+    if (location.hash !== hash) { if (opts.fromRoute) history.replaceState(null, '', hash); else history.pushState(null, '', hash); }
+    setCrumbs(id, param);
     if (!opts.keepScroll) window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
     closeSheet();
   }
-  function route(){ var h = location.hash.replace('#', ''), p = h.split(':'); if (SCREENS.indexOf(p[0]) < 0) p = ['overview']; go(p[0], p[1]); }
+  function route(){ var h = location.hash.replace('#', ''), p = h.split(':'); if (SCREENS.indexOf(p[0]) < 0) p = ['overview']; go(p[0], p[1], { fromRoute: true }); }
+  /* хлебные крошки кабинета: Главная › Личный кабинет › Раздел › Заказ */
+  var CRUMB = { 'new': 'Новый заказ', orders: 'Мои заказы', order: 'Мои заказы', cards: 'Мои карты', favs: 'Избранное', payments: 'Платежи и возвраты', kyc: 'Верификация', profile: 'Профиль и безопасность', support: 'Поддержка', docs: 'Документы' };
+  function setCrumbs(id, param){
+    var bar = document.querySelector('.crumbbar'); if (!bar) return;
+    var ol = bar.querySelector('.cb-list'), back = bar.querySelector('.cb-back'), base = window.MC_BASE || '';
+    var items = [['Главная', base + 'index.html'], ['Личный кабинет', id === 'overview' ? null : '#overview']];
+    if (id === 'order') { items.push(['Мои заказы', '#orders']); items.push(['Заказ ' + (param || ''), null]); }
+    else if (CRUMB[id]) items.push([CRUMB[id], null]);
+    ol.innerHTML = items.map(function(it){ return '<li>' + (it[1] ? '<a href="' + it[1] + '">' + it[0] + '</a>' : '<span aria-current="page">' + it[0] + '</span>') + '</li>'; }).join('');
+    if (back) back.setAttribute('href', id === 'order' ? '#orders' : id === 'overview' ? base + 'index.html' : '#overview');
+  }
   document.addEventListener('click', function(e){
     var b = e.target.closest('[data-go]'); if (!b || b.closest('.tk')) return;
     e.preventDefault();
