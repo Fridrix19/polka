@@ -1,5 +1,5 @@
 #!/bin/bash
-# Локальный запуск Polka на Mac: сайт http://localhost:3000, админка http://localhost:3000/admin (admin / admin)
+# Локальный запуск Polka на Mac: сайт http://localhost:3001, админка http://localhost:3001/admin (admin / admin)
 # Нужны Node.js 20+ и Postgres.app (postgresapp.com → Initialize). Запуск: bash start-local.sh
 set -e
 cd "$(dirname "$0")"
@@ -13,8 +13,8 @@ export NUXT_DATABASE_URL="${NUXT_DATABASE_URL:-postgres://localhost/polka}"
 export DATABASE_URL="$NUXT_DATABASE_URL"
 export NUXT_SECRET="${NUXT_SECRET:-local-dev-secret-change-me}"
 export NUXT_DEV_CODES=true
-export NUXT_PUBLIC_SITE_URL=http://localhost:3000
-export PORT="${PORT:-3000}"
+export PORT="${PORT:-3001}"
+export NUXT_PUBLIC_SITE_URL="http://localhost:$PORT"
 
 psql -h localhost -lqt | cut -d'|' -f1 | grep -qw polka || { createdb -h localhost polka && echo "✓ создана база polka"; }
 [ -d node_modules ] || npm ci
