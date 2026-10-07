@@ -2,6 +2,7 @@
 import logo from '~/assets/logo.svg?url'
 // оболочка админки: проверка входа, оглавление справа со счётчиками, быстрый поиск, обязательная смена пароля
 const { api, me, can } = useAdm()
+const beta = !!(useRuntimeConfig().public as any).beta   // бета: вход admin / admin, без смены пароля
 const route = useRoute()
 const ready = ref(false)
 const counts = ref<any>({})
@@ -17,7 +18,7 @@ async function loadMe() {
 async function loadCounts() { if (me.value.admin) counts.value = await api('GET', '/summary', undefined, { quiet: true }).catch(() => ({})) }
 let cT: any
 onUnmounted(() => clearInterval(cT))
-onMounted(async () => { await loadMe(); ready.value = true; cT = setInterval(() => { if (!isLogin.value && document.visibilityState === 'visible') loadCounts() }, 30000); if (me.value.admin?.must_change) pw.open = true; else loadCounts() })
+onMounted(async () => { await loadMe(); ready.value = true; cT = setInterval(() => { if (!isLogin.value && document.visibilityState === 'visible') loadCounts() }, 30000); if (me.value.admin?.must_change && !beta) pw.open = true; else loadCounts() })
 watch(() => route.path, () => { if (!isLogin.value) loadCounts() })
 
 // оглавление: рубрики и разделы со сквозной нумерацией, счётчики очереди
@@ -78,18 +79,18 @@ async function changePw() {
       <div class="pk-me">
         <form class="pk-search" role="search" @submit.prevent="go"><input v-model="search" placeholder="Номер PK-… или клиент" aria-label="Быстрый поиск"><button type="submit" aria-label="Найти"><i class="pi pi-search" /></button></form>
         <span class="pk-who"><b>{{ me.admin.name }}</b><span>{{ ROLE[me.admin.role] }}</span></span>
-        <button type="button" class="pk-link" @click="pw.open = true">Пароль</button>
+        <button v-if="!beta" type="button" class="pk-link" @click="pw.open = true">Пароль</button>
         <button type="button" class="pk-link" @click="logout">Выйти</button>
       </div>
     </header>
     <div class="pk-body">
       <main class="adm-main">
-        <div v-if="me.admin.must_change" class="banner"><i class="pi pi-exclamation-triangle warn" />
+        <div v-if="me.admin.must_change && !beta" class="banner"><i class="pi pi-exclamation-triangle warn" />
           <span>Вы вошли с временным паролем{{ me.admin.login === 'admin' ? ' admin/admin' : '' }}. Смените его, прежде чем работать дальше.</span>
           <Button size="small" label="Сменить пароль" @click="pw.open = true" />
         </div>
-        <AdmCrumbs v-if="!me.admin.must_change" />
-        <NuxtPage v-if="!me.admin.must_change" @changed="loadCounts" />
+        <AdmCrumbs v-if="!me.admin.must_change || beta" />
+        <NuxtPage v-if="!me.admin.must_change || beta" @changed="loadCounts" />
       </main>
       <aside class="pk-toc" aria-label="Оглавление">
         <h2>Оглавление</h2>
